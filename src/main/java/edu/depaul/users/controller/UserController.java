@@ -1,6 +1,6 @@
 package edu.depaul.users.controller;
 
-import edu.depaul.users.model.UserDTO;
+import edu.depaul.users.model.User;
 import edu.depaul.users.service.UserService;
 import edu.depaul.users.util.WebUtils;
 import jakarta.validation.Valid;
@@ -32,26 +32,26 @@ public class UserController {
     }
 
     @GetMapping("/add")
-    public String add(@ModelAttribute("user") final UserDTO userDTO) {
+    public String add(@ModelAttribute("user") final User user) {
         return "user/add";
     }
 
     @PostMapping("/add")
-    public String add(@ModelAttribute("user") @Valid final UserDTO userDTO,
+    public String add(@ModelAttribute("user") @Valid final User user,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (!bindingResult.hasFieldErrors("fullName") && userService.fullNameExists(userDTO.getFullName())) {
+        if (!bindingResult.hasFieldErrors("fullName") && userService.fullNameExists(user.getFullName())) {
             bindingResult.rejectValue("fullName", "Exists.user.fullName");
         }
-        if (!bindingResult.hasFieldErrors("userName") && userService.userNameExists(userDTO.getUserName())) {
+        if (!bindingResult.hasFieldErrors("userName") && userService.userNameExists(user.getUserName())) {
             bindingResult.rejectValue("userName", "Exists.user.userName");
         }
-        if (!bindingResult.hasFieldErrors("passwordHash") && userService.passwordHashExists(userDTO.getPasswordHash())) {
+        if (!bindingResult.hasFieldErrors("passwordHash") && userService.passwordHashExists(user.getPasswordHash())) {
             bindingResult.rejectValue("passwordHash", "Exists.user.passwordHash");
         }
         if (bindingResult.hasErrors()) {
             return "user/add";
         }
-        userService.create(userDTO);
+        userService.create(user);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.create.success"));
         return "redirect:/users";
     }
@@ -64,28 +64,28 @@ public class UserController {
 
     @PostMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") final Long id,
-            @ModelAttribute("user") @Valid final UserDTO userDTO, final BindingResult bindingResult,
+            @ModelAttribute("user") @Valid final User user, final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes) {
-        final UserDTO currentUserDTO = userService.get(id);
+        final User currentUser = userService.get(id);
         if (!bindingResult.hasFieldErrors("fullName") &&
-                !userDTO.getFullName().equalsIgnoreCase(currentUserDTO.getFullName()) &&
-                userService.fullNameExists(userDTO.getFullName())) {
+                !user.getFullName().equalsIgnoreCase(currentUser.getFullName()) &&
+                userService.fullNameExists(user.getFullName())) {
             bindingResult.rejectValue("fullName", "Exists.user.fullName");
         }
         if (!bindingResult.hasFieldErrors("userName") &&
-                !userDTO.getUserName().equalsIgnoreCase(currentUserDTO.getUserName()) &&
-                userService.userNameExists(userDTO.getUserName())) {
+                !user.getUserName().equalsIgnoreCase(currentUser.getUserName()) &&
+                userService.userNameExists(user.getUserName())) {
             bindingResult.rejectValue("userName", "Exists.user.userName");
         }
         if (!bindingResult.hasFieldErrors("passwordHash") &&
-                !userDTO.getPasswordHash().equalsIgnoreCase(currentUserDTO.getPasswordHash()) &&
-                userService.passwordHashExists(userDTO.getPasswordHash())) {
+                !user.getPasswordHash().equalsIgnoreCase(currentUser.getPasswordHash()) &&
+                userService.passwordHashExists(user.getPasswordHash())) {
             bindingResult.rejectValue("passwordHash", "Exists.user.passwordHash");
         }
         if (bindingResult.hasErrors()) {
             return "user/edit";
         }
-        userService.update(id, userDTO);
+        userService.update(id, user);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.update.success"));
         return "redirect:/users";
     }

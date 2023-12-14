@@ -1,4 +1,4 @@
-package edu.depaul.users.domain;
+package edu.depaul.users.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

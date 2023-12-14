@@ -1,6 +1,6 @@
 package edu.depaul.users.repos;
 
-import edu.depaul.users.domain.User;
+import edu.depaul.users.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
