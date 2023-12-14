@@ -54,4 +54,7 @@ public class User {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
+    @Column()
+    private String email;
+
 }

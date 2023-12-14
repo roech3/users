@@ -24,4 +24,8 @@ public class UserDTO {
     @Size(max = 255)
     private String passwordHash;
 
+    @NotNull
+    @Size(max = 255)
+    private String email;
+
 }

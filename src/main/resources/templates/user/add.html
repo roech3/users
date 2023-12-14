@@ -17,6 +17,7 @@
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='fullName')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='userName')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='passwordHash')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='email')}" />
                 <input type="submit" th:value="#{user.add.headline}" class="btn btn-primary mt-4" />
             </form>
         </div>

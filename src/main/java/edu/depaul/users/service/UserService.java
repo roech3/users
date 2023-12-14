@@ -53,6 +53,7 @@ public class UserService {
         userDTO.setFullName(user.getFullName());
         userDTO.setUserName(user.getUserName());
         userDTO.setPasswordHash(user.getPasswordHash());
+        userDTO.setEmail(user.getEmail());
         return userDTO;
     }
 
