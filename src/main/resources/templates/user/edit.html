@@ -18,6 +18,12 @@
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='fullName')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='userName')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='passwordHash')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='email')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='phoneNumber')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='adressId')}" />
+
+
+
                 <input type="submit" th:value="#{user.edit.headline}" class="btn btn-primary mt-4" />
             </form>
         </div>

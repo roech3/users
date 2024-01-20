@@ -49,8 +49,9 @@ public class UserService {
         return userRepository.existsByUserNameIgnoreCase(userName);
     }
 
-    public boolean passwordHashExists(final String passwordHash) {
-        return userRepository.existsByPasswordHashIgnoreCase(passwordHash);
+    public boolean passwordHashExists(final String passwordHash) { return userRepository.existsByPasswordHashIgnoreCase(passwordHash);
+
+
     }
 
 }

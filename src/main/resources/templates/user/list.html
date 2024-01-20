@@ -31,6 +31,8 @@
                             <td>[[${user.userName}]]</td>
                             <td>[[${user.passwordHash}]]</td>
                             <td>[[${user.email}]]</td>
+                            <td>[[${user.phoneNumber}]]</td>
+                            <td>[[${user.adressId}]]</td>
                             <td>
                                 <div class="float-end text-nowrap">
                                     <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-sm btn-secondary">[[#{user.list.edit}]]</a>

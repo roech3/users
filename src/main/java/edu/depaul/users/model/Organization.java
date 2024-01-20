@@ -1,5 +1,6 @@
 package edu.depaul.users.model;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -17,11 +18,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 @Entity
-@Table(name = "\"User\"")
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class User {
+public class Organization {
 
     @Id
     @Column(nullable = false, updatable = false)
@@ -38,13 +38,10 @@ public class User {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String fullName;
+    private String name;
 
-    @Column(nullable = false, unique = true, length = 16)
-    private String userName;
-
-    @Column(nullable = false, unique = true)
-    private String passwordHash;
+    @Column(nullable = false, length = 255)
+    private String adminName;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -54,11 +51,13 @@ public class User {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
-    @Column()
+    @Column(nullable = false, unique = true, length = 255)
     private String email;
 
     @Column(nullable = false, unique = true, length = 10)
     private String phoneNumber;
 
     @Column(nullable = true)
-    private long addressId; }
+    private long addressId;
+
+}
